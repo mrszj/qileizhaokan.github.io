@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-01-16T16:48:57.545Z</updated>
+  <updated>2015-01-16T16:58:43.794Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,12 +15,14 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[this is my test]]></title>
+    <title><![CDATA[]]></title>
     <link href="http://yoursite.com/2015/01/17/myfirstblog/"/>
     <id>http://yoursite.com/2015/01/17/myfirstblog/</id>
-    <published>2015-01-16T16:24:08.000Z</published>
-    <updated>2015-01-16T16:24:08.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://qileizhaokan.github.com/" target="_blank" rel="external">mysite</a>! This is your very first post. you can ask me on <a href="https://github.com/qileilove" target="_blank" rel="external">GitHub</a>.</p>
+    <published>2015-01-16T16:58:11.000Z</published>
+    <updated>2015-01-16T16:58:11.000Z</updated>
+    <content type="html"><![CDATA[<p>layout: photo<br>title: this is my test<br><img src="http://fmn.rrimg.com/fmn062/20120406/0030/original_4CuA_744800000847118f.jpg" alt="my photo1"></p>
+<hr>
+<p>Welcome to <a href="http://qileizhaokan.github.com/" target="_blank" rel="external">mysite</a>! This is your very first post. you can ask me on <a href="https://github.com/qileilove" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick_Start">Quick Start</h2>
 <h3 id="Create_a_new_post">Create a new post</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -42,7 +44,7 @@ $ hexo deploy</code></p>
 <p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://qileizhaokan.github.com/" target="_blank" rel="external">mysite</a>! This is your very first post. you can ask]]>
+    <![CDATA[<p>layout: photo<br>title: this is my test<br><img src="http://fmn.rrimg.com/fmn062/20120406/0030/original_4CuA_744800000847118f.jpg" alt="m]]>
     </summary>
     
   </entry>
