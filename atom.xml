@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-01-16T16:58:43.794Z</updated>
+  <updated>2015-01-17T07:32:36.667Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -18,33 +18,29 @@
     <title><![CDATA[]]></title>
     <link href="http://yoursite.com/2015/01/17/myfirstblog/"/>
     <id>http://yoursite.com/2015/01/17/myfirstblog/</id>
-    <published>2015-01-16T16:58:11.000Z</published>
-    <updated>2015-01-16T16:58:11.000Z</updated>
-    <content type="html"><![CDATA[<p>layout: photo<br>title: this is my test<br><img src="http://fmn.rrimg.com/fmn062/20120406/0030/original_4CuA_744800000847118f.jpg" alt="my photo1"></p>
+    <published>2015-01-17T06:48:49.000Z</published>
+    <updated>2015-01-17T06:48:49.000Z</updated>
+    <content type="html"><![CDATA[<p>title: “爱情”<br>＃ 亲爱的感谢你陪伴我这么久<br><img src="http://fmn.rrimg.com/fmn062/20120406/0030/original_4CuA_744800000847118f.jpg" alt="我和媳妇"></p>
 <hr>
-<p>Welcome to <a href="http://qileizhaokan.github.com/" target="_blank" rel="external">mysite</a>! This is your very first post. you can ask me on <a href="https://github.com/qileilove" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
+<p>欢迎来到我的个人主页<a href="http://qileizhaokan.github.com/" target="_blank" rel="external">mysite</a>! 这是我第一次用hexo. 不错使用起来很方便<a href="https://github.com/qileilove" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="这是全新的开始，开始放弃worldpress_转战git_page">这是全新的开始，开始放弃worldpress 转战git page</h2>
+<pre><code>这是我的旅程
+</code></pre><h4 id="这里插入的代码的方式">这里插入的代码的方式</h4>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 
+<p>我用的hexo 想要知道如何建站 可以去这里找</p>
 <p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<p><code>` bash
-$ hexo deploy</code></p>
+<h3 id="这个博客会教你如何建立一个酷酷的blog">这个博客会教你如何建立一个酷酷的blog</h3>
+<p>more info:<a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">Writing</a></p>
 <h4 id="这是我第一次用hexo">这是我第一次用hexo</h4>
-<p>pthotos:<br>以下是余下全文!<br><img src="http://fmn.rrfmn.com/fmn060/20111114/0015/large_RxoI_74d5000095b5125d.jpg" alt="my photo"></p>
+<pre><code>上传一张个人照片，证明自己是个<span class="keyword">it</span>屌丝
+</code></pre><p><img src="http://fmn.rrfmn.com/fmn060/20111114/0015/large_RxoI_74d5000095b5125d.jpg" alt="my photo"></p>
 <p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<hr>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>layout: photo<br>title: this is my test<br><img src="http://fmn.rrimg.com/fmn062/20120406/0030/original_4CuA_744800000847118f.jpg" alt="m]]>
+    <![CDATA[<p>title: “爱情”<br>＃ 亲爱的感谢你陪伴我这么久<br><img src="http://fmn.rrimg.com/fmn062/20120406/0030/original_4CuA_744800000847118f.jpg" alt="我和媳妇"></p>
+]]>
     </summary>
     
   </entry>
