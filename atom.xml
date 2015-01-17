@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-01-17T08:28:06.845Z</updated>
+  <updated>2015-01-17T08:30:43.703Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,24 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[second]]></title>
+    <link href="http://yoursite.com/2015/01/17/second/"/>
+    <id>http://yoursite.com/2015/01/17/second/</id>
+    <published>2015-01-17T08:29:01.000Z</published>
+    <updated>2015-01-17T08:30:26.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="这是second_blog">这是second blog</h2>
+<p><img src="http://fmn.rrimg.com/fmn062/20120406/0030/original_4CuA_744800000847118f.jpg" alt="我和媳妇"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="这是second_blog">这是second blog</h2>
+<p><img src="http://fmn.rrimg.com/fmn062/20120406/0030/original_4CuA_744800000847118f.jpg" alt="我和]]>
+    </summary>
+    
+      <category term="aiqing" scheme="http://yoursite.com/tags/aiqing/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[]]></title>
