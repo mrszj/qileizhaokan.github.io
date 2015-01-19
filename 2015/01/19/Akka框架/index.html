@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>second | “永远爱你老婆”</title>
+  <title>Akka框架 | “永远爱你老婆”</title>
   <meta name="author" content="“齐磊”">
   
   <meta name="description" content="“这个页面献给我老婆 哈哈”">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="second"/>
+  <meta property="og:title" content="Akka框架"/>
   <meta property="og:site_name" content="“永远爱你老婆”"/>
 
   
@@ -84,18 +84,35 @@
   <div class="post-content">
     <header>
       
-        <time datetime="2015-01-17T08:29:01.000Z"><a href="/2015/01/17/second/">1月 17 2015</a></time>
+        <time datetime="2015-01-19T15:06:56.000Z"><a href="/2015/01/19/Akka框架/">1月 19 2015</a></time>
       
       
   
-    <h1 class="title">second</h1>
+    <h1 class="title">Akka框架</h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="这是second_blog">这是second blog</h2>
-<p><img src="http://fmn.rrimg.com/fmn062/20120406/0030/original_4CuA_744800000847118f.jpg" alt="我和媳妇"></p>
+        <h1 id="Akka框架">Akka框架</h1>
+<p>什么是Actor？<br>AKKA框架是一个平台，灵感来自ERlang，能更轻松地开发可扩展，实现多线程安全应用。虽然在大多数流行的语言并发是基于多线程之间的共享内存，使用同步方法防止写争夺，Akka提供的并发模型基于Actors。<br>Actors提供一个简单统一模型:</p>
+<ul>
+<li>隔离计算实体</li>
+<li>“Share nothing”</li>
+<li>没有任何地方同步</li>
+<li>异步消息传递</li>
+<li>不可变的消息</li>
+<li>Actors有类似消息的mailbox / queue</li>
+</ul>
+<hr>
+<h2 id="Actor来自于哪里？">Actor来自于哪里？</h2>
+<p>首先是由Carl Hewitt在1973定义<br>由Erlang OTP (Open Telecom Platform) 推广<br>消息传递更加符合面向对象的原始意图<br>Alan Kay说:<br>“OOP 对于我来说仅仅意味着消息, 保护隐藏在内部进行状态处理，然后在后期和外界其他事物进行绑定。”</p>
+<h2 id="为什么使用Actor?">为什么使用Actor?</h2>
+<p>没有使用Actor，你的CPU占用如下：<br>image<a href="http://www.jdon.com/concurrent/images/akka.jpg" target="_blank" rel="external">akka</a><br>使用Actor会降低CPU占用：<br>image<a href="http://www.jdon.com/concurrent/images/akkacpu.jpg" target="_blank" rel="external">akka cpu</a></p>
+<h2 id="Akka的作者">Akka的作者</h2>
+<p>Jonas Bonér<br>经历：<br>AspectWerkz<br>JRockit<br>Terracotta<br>Typesafe 公司创始人，与Martin Oderksy (May 2011)一起</p>
+<h2 id="为什么使用Akka？">为什么使用Akka？</h2>
+<p>垂直扩展Scale up<br>Akka actors是轻量，能够平均在一个系统创建数千个。<br>线程是重量的，场景切换相当慢。<br>横向扩展Scale out<br>Actor能够在代码没有任何修改时在远程运行<br>失败恢复和错误处理<br>更多信息请查看官网<a href="http://doc.akka.io/docs/akka/snapshot/scala/actors.html" target="_blank" rel="external">mysite</a></p>
 
       
     </div>
@@ -103,13 +120,9 @@
       
 
         
-          <div class="alignleft post-nav">
-            <em>上一篇: </em><a href="/2015/01/19/gatling/">gatling</a>
-          </div>
-        
         
           <div class="alignright post-nav">
-            <em>下一篇: </em><a href="/2015/01/17/myfirstblog/"></a>
+            <em>下一篇: </em><a href="/2015/01/19/gatling/">gatling</a>
           </div>
           <div class="clearfix"></div>
         
@@ -122,8 +135,8 @@
             
               <span class="from-link">
                 <em>本文链接地址:</em>
-                <a href="/2015/01/17/second/">
-                  http://yoursite.com/2015/01/17/second/
+                <a href="/2015/01/19/Akka框架/">
+                  http://yoursite.com/2015/01/19/Akka框架/
                 </a>
               </span>
             
@@ -133,7 +146,7 @@
         
   
   <div class="tags">
-    <a href="/tags/aiqing/">aiqing</a>
+    <a href="/tags/性能测试/">性能测试</a>
   </div>
 
         

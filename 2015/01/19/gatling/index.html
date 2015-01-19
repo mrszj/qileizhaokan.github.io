@@ -99,7 +99,7 @@
 <h2 id="什么是gatling？">什么是gatling？</h2>
 <p><strong>gatling</strong>是一款基于Scala 开发的高性能服务器性能测试工具，它主要用于对服务器进行负载等测试，并分析和测量服务器的各种性能指标。Gatling主要用于测量基于HTTP的服务器，比如Web应用程序，RESTful服务等，除此之外它拥有以下特点：</p>
 <ul>
-<li>支持Akka Actors 和 Async IO，从而能达到很高的性能</li>
+<li>支持Akka Actors（什么是akka actors<a href="http://qileizhaokan.github.io/2015/01/19/Akka框架" target="_blank" rel="external">akka_site</a>） 和 Async IO，从而能达到很高的性能</li>
 <li>支持实时生成Html动态轻量报表，从而使报表更易阅读和进行数据分析</li>
 <li>支持DSL脚本，从而使测试脚本更易开发与维护</li>
 <li>支持录制并生成测试脚本，从而可以方便的生成测试脚本</li>
@@ -114,13 +114,17 @@
 <p> Gatling适用的场景包括：测试需求经常改变，测试脚本需要经常维护；测试环境的客户机性能不强，但又希望发挥硬件的极限性能；能对测试脚本进行很好的版本管理，并通过CI进行持续的性能测试；希望测试结果轻量易读等</p>
 <hr>
 <h2 id="Gatling与JMeter">Gatling与JMeter</h2>
-<p>JMeter是目前使用最为广泛的服务器性能测试工具之一，它最大的特点就是拥有一套简单易用的GUI，但它最大的缺点也是由于简单易用导致它某些方面的不足，比如测试脚本（XML）不容易维护等。Gatling正是针对JMeter的劣势做了大量改进，因此相较于 JMeter，Gatling拥有以下优势：<br>在并发性能方面，Gatling使用了Akka Actors和Async IO, 而JMeter则采用了一个用户使用一个线程的方式 ，一旦并发线程过多，性能就急速下降，很难充分发挥硬件的能力。虽然两个工具都是基于JVM的，但是Actors模型的性能在高并发的情况下性能大大优于Threads，从而使得Gatling在更少的内存和CPU的情况下可以提供同样的测试能力，降低了测试成本。图1和图2分别展现了二者在并发性能方面的表现。<br>![jmeter] <a href="http://cdn3.infoqstatic.com/resource/articles/new-generation-server-testing-tool-gatling/zh/resources/0020.png" target="_blank" rel="external">http://cdn3.infoqstatic.com/resource/articles/new-generation-server-testing-tool-gatling/zh/resources/0020.png</a><br>![gatling] <a href="http://cdn3.infoqstatic.com/resource/articles/new-generation-server-testing-tool-gatling/zh/resources/0021.png" target="_blank" rel="external">http://cdn3.infoqstatic.com/resource/articles/new-generation-server-testing-tool-gatling/zh/resources/0021.png</a></p>
+<p>JMeter是目前使用最为广泛的服务器性能测试工具之一，它最大的特点就是拥有一套简单易用的GUI，但它最大的缺点也是由于简单易用导致它某些方面的不足，比如测试脚本（XML）不容易维护等。Gatling正是针对JMeter的劣势做了大量改进，因此相较于 JMeter，Gatling拥有以下优势：<br>在并发性能方面，Gatling使用了Akka Actors和Async IO, 而JMeter则采用了一个用户使用一个线程的方式 ，一旦并发线程过多，性能就急速下降，很难充分发挥硬件的能力。虽然两个工具都是基于JVM的，但是Actors模型的性能在高并发的情况下性能大大优于Threads，从而使得Gatling在更少的内存和CPU的情况下可以提供同样的测试能力，降低了测试成本。图1和图2分别展现了二者在并发性能方面的表现。<br><img src="http://cdn3.infoqstatic.com/resource/articles/new-generation-server-testing-tool-gatling/zh/resources/0020.png" alt="jmeter"><br><img src="http://cdn3.infoqstatic.com/resource/articles/new-generation-server-testing-tool-gatling/zh/resources/0021.png" alt="gatling"></p>
 
       
     </div>
     <footer>
       
 
+        
+          <div class="alignleft post-nav">
+            <em>上一篇: </em><a href="/2015/01/19/Akka框架/">Akka框架</a>
+          </div>
         
         
           <div class="alignright post-nav">
@@ -186,7 +190,7 @@
   
     <li><a href="/tags/aiqing/">aiqing</a><small>1</small></li>
   
-    <li><a href="/tags/性能测试/">性能测试</a><small>1</small></li>
+    <li><a href="/tags/性能测试/">性能测试</a><small>2</small></li>
   
   </ul>
 </div>
@@ -196,6 +200,10 @@
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2015/01/19/Akka框架/">Akka框架</a>
+      </li>
     
       <li>
         <a href="/2015/01/19/gatling/">gatling</a>
