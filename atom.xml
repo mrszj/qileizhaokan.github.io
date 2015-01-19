@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-01-19T15:25:45.982Z</updated>
+  <updated>2015-01-19T15:29:05.192Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2015/01/19/Akka%E6%A1%86%E6%9E%B6/"/>
     <id>http://yoursite.com/2015/01/19/Akka框架/</id>
     <published>2015-01-19T15:06:56.000Z</published>
-    <updated>2015-01-19T15:21:52.000Z</updated>
+    <updated>2015-01-19T15:28:39.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Akka框架">Akka框架</h1>
 <p>什么是Actor？<br>AKKA框架是一个平台，灵感来自ERlang，能更轻松地开发可扩展，实现多线程安全应用。虽然在大多数流行的语言并发是基于多线程之间的共享内存，使用同步方法防止写争夺，Akka提供的并发模型基于Actors。<br>Actors提供一个简单统一模型:</p>
 <ul>
@@ -38,7 +38,7 @@
 <h2 id="Akka的作者">Akka的作者</h2>
 <p>Jonas Bonér<br>经历：<br>AspectWerkz<br>JRockit<br>Terracotta<br>Typesafe 公司创始人，与Martin Oderksy (May 2011)一起</p>
 <h2 id="为什么使用Akka？">为什么使用Akka？</h2>
-<p>垂直扩展Scale up<br>Akka actors是轻量，能够平均在一个系统创建数千个。<br>线程是重量的，场景切换相当慢。<br>横向扩展Scale out<br>Actor能够在代码没有任何修改时在远程运行<br>失败恢复和错误处理<br>更多信息请查看官网<a href="http://doc.akka.io/docs/akka/snapshot/scala/actors.html" target="_blank" rel="external">mysite</a></p>
+<p>垂直扩展Scale up<br>Akka actors是轻量，能够平均在一个系统创建数千个。<br>线程是重量的，场景切换相当慢。<br>横向扩展Scale out<br>Actor能够在代码没有任何修改时在远程运行<br>失败恢复和错误处理<br>更多信息请查看<a href="http://doc.akka.io/docs/akka/snapshot/scala/actors.html" target="_blank" rel="external">官网</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="Akka框架">Akka框架</h1>
@@ -54,13 +54,13 @@
     <link href="http://yoursite.com/2015/01/19/gatling/"/>
     <id>http://yoursite.com/2015/01/19/gatling/</id>
     <published>2015-01-19T14:55:38.000Z</published>
-    <updated>2015-01-19T15:25:38.000Z</updated>
+    <updated>2015-01-19T15:28:21.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Gatling—-新一代的性能测试工具">Gatling—-新一代的性能测试工具</h1>
 <p>[toc]</p>
 <h2 id="什么是gatling？">什么是gatling？</h2>
 <p><strong>gatling</strong>是一款基于Scala 开发的高性能服务器性能测试工具，它主要用于对服务器进行负载等测试，并分析和测量服务器的各种性能指标。Gatling主要用于测量基于HTTP的服务器，比如Web应用程序，RESTful服务等，除此之外它拥有以下特点：</p>
 <ul>
-<li>支持Akka Actors（什么是akka actors<a href="http://qileizhaokan.github.io/2015/01/19/Akka框架" target="_blank" rel="external">akka_site</a>） 和 Async IO，从而能达到很高的性能</li>
+<li>支持Akka Actors（什么是<a href="http://qileizhaokan.github.io/2015/01/19/Akka框架" target="_blank" rel="external">akka actors</a>） 和 Async IO，从而能达到很高的性能</li>
 <li>支持实时生成Html动态轻量报表，从而使报表更易阅读和进行数据分析</li>
 <li>支持DSL脚本，从而使测试脚本更易开发与维护</li>
 <li>支持录制并生成测试脚本，从而可以方便的生成测试脚本</li>
