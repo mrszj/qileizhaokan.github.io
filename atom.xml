@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[“永远爱你老婆”]]></title>
+  <title><![CDATA[“forever”]]></title>
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-01-19T15:32:21.863Z</updated>
+  <updated>2015-01-20T14:52:36.602Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,82 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[gitbook]]></title>
+    <link href="http://yoursite.com/2015/01/20/gitbook/"/>
+    <id>http://yoursite.com/2015/01/20/gitbook/</id>
+    <published>2015-01-20T14:46:44.000Z</published>
+    <updated>2015-01-20T14:51:52.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Return_to_book">Return to book</h2>
+<p>www.gitbook.com专门做gitbook的网站<br>Review this book<br>About the author<br>Introduction</p>
+<ol>
+<li>Chapter 1 安裝<br>1.1. 常用的GIT軟體<br>1.2. GitHub 設定</li>
+<li>Chapter 2 新手教學<br>2.1. GIT問答大作戰<br>2.2. GIT話說從頭<br>2.3. 開始進入GIT世界<br>2.4. 檔案的四種狀態<br>2.5. 回復GIT不同區域修改</li>
+<li>Chapter 3 分支與合併<br>3.1. GIT分支<br>3.2. GIT合併<br>3.3. Stash暫存</li>
+<li>Chapter 4 提交的修改<br>4.1. reset<br>4.2. revert<br>4.3. cherry-pick<br>4.4. rebase</li>
+<li>Chapter 5 上雲端囉<br>5.1. GitHub建立遠端儲存庫<br>5.2. 遠端多人合作開發－單分支<br>5.3. 遠端多人合作開發－多分支<br>5.4. Visual Studio Online 版控</li>
+<li>Chapter 6 GitBook寫書當作家<br>6.1. GitBook寫作<br>6.2. markdown風格<br>Published using GitBook<br>GIT教學<br>GitBook寫作<br>请看 <a href="http://kingofamani.gitbooks.io/git-teach/content/chapter_6_gitbook/chapter_6_gitbookgitbook2.html" target="_blank" rel="external">git book</a></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Return_to_book">Return to book</h2>
+<p>www.gitbook.com专门做gitbook的网站<br>Review this book<br>About the author<br>Introduction</p>
+<ol>]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[]]></title>
+    <link href="http://yoursite.com/2015/01/20/Varnish-introduce/"/>
+    <id>http://yoursite.com/2015/01/20/Varnish-introduce/</id>
+    <published>2015-01-20T07:08:50.000Z</published>
+    <updated>2015-01-20T07:08:50.000Z</updated>
+    <content type="html"><![CDATA[<p> title: Varnish_introduce<br>date: 2015-01-20 14:59:05</p>
+<h2 id="tags:代理服务">tags:代理服务</h2>
+<p>Varnish是一个轻量级的Cache和反向代理软件，先进的设计理念和成熟的设计框架是Varnish的主要特点，现在的Varnish总共代码量不大，功能上虽然在不断改进，但是还需要继续丰富和加强。下面总结了Varnish的一些特点：</p>
+<ul>
+<li>是基于内存缓存，重启后数据将消失。</li>
+<li>利用虚拟内存方式，io性能好。</li>
+<li>支持设置0~60秒内的精确缓存时间。</li>
+<li>VCL配置管理比较灵活。</li>
+<li>32位机器上缓存文件大小为最大2G。</li>
+<li>具有强大的管理功能，例如top，stat，admin，list等。</li>
+<li>状态机设计巧妙，结构清晰。</li>
+<li>利用二叉堆管理缓存文件，达到积极删除目的。</li>
+</ul>
+<p>Varnish的Storage方式可分为两种：</p>
+<ol>
+<li>Malloc    通过malloc获取内存。</li>
+<li>Mmap file  创建大文件，通过二分法分段映射成1G以内的大块。</li>
+</ol>
+<p>Varnish进程的工作模式：</p>
+<pre><code>varnish启动或有<span class="number">2</span>个进程 master(management)进程和child(worker)进程。master读入存储配置命令，进行初始化，然后fork，监控child。child则分配线程进行cache工作，child还会做管理线程和生成很多worker线程。
+child进程主线程初始化过程中，将存储大文件整个加载到内存中，如果该文件超出系统的虚拟内存，则会减少原来配置mmap大小，然后继续加载，这时候创建并初始化空闲存储结构体，放在存储管理的<span class="keyword">struct</span>中，等待分配。
+接着varnish某个负责接口新http连接的线程开始等待用户，如果有新的http连接，但是这个线程只负责接收，然后唤醒等待线程池中的work线程，进行请求处理。
+worker线程读入uri后，将会查找已有的<span class="keyword">object</span>，命中直接返回，没有命中，则会从后端服务器中取出来，放到缓存中。如果缓存已满，会根据LRU算法，释放旧的<span class="keyword">object</span>。对于释放缓存，有一个超时线程会检测缓存中所有<span class="keyword">object</span>的生命周期，如果缓存过期（ttl），则删除，释放相应的存储内存。
+</code></pre><p>Varnish的实际压力测试<br> 硬件环境|　<br> PowerEdge R610|<br>硬件环境<br>CPU<br>Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz<br>内存<br>12G<br>硬盘<br>单盘raid0<br>（150G * 3块）<br>软件环境<br>软件环境<br>OS版本<br>centos5.4<br>Kernal<br>2.6.18-164.el5<br>测试软件版本：varnishd 2.1.5</p>
+<p>测试工具<br>消减网络频宽/吞吐量,在相同服务器上生成负载,使用Apache Bench工具(修改后的ab)模仿线上访问，将百万的url请求以顺序的方式读取，然后用2台服务器启动多个ab一次产生的请求500个请求循环N次请求到varnish服务器。</p>
+<p>测试前设置：<br>1）先将测试机内核可以同时打开的文件描述符的最大值设置到65535。（ulimit -HSn 65532）<br>2） 强制内核不要使用SWAP分区。（echo 0 &gt; /proc/sys/vm/swappiness ）</p>
+<p>Varnish的Storage方式<br>    1)malloc 通过malloc获取内存。<br>    2) Mmap file 创建大文件，通过二分法分段映射成1G以内的大块。<br>综合测试<br>1） Malloc 方式<br>启动命令：<br>/opt/varnish-2.1.5/sbin/varnishd -u www -g www -f /opt/varnish-2.1.5/etc/varnish/varnish.vcl -s malloc,2G -w 10,5000,10 -T 192.168.1.100:3500<br>测试详细数据：<br>varnish压测类型<br>varnish压测数据<br>His/s<br>1.8W/s<br>压测文件大小<br>15K（平均）<br>CPU状态(idle%)<br>60%<br>两块网卡流量<br>200M（打满）<br>磁盘的繁忙程度<br>0%<br>命中率<br>98%</p>
+<p>2） Mmap file方式<br>启动命令：<br>/opt/varnish-2.1.5/sbin/varnishd -u www -g www -f /opt/varnish-2.1.5/etc/varnish/varnish_test.vcl -s file,/data0/varnish_cache/cache_data.txt,2G -w 10,5000,10 -T 192.168.1.100:3500<br>测试详细数据：<br>varnish压测类型<br>varnish压测数据<br>His/s<br>1.8W/s<br>压测文件大小<br>15K（平均）<br>CPU状态(idle%)<br>50%<br>两块网卡流量<br>200M（打满）<br>磁盘的繁忙程度<br> 100%(SDA)<br>命中率<br>98%</p>
+<p>参数详解：<br>-f  指定配置文件</p>
+<p>-s  选项用来确定 varnish 使用的存储类型和存储容量，我使用的是 malloc 类型（malloc  是一个 C  函数，用于分配内存空间），  1G  定义多少内存被 malloced，1G  =1gigabyte。</p>
+<p>-w  min[,max[,timeout]]指定线程最小和最大空闲时间。这是一个设置thread_pool_min和thread_pool_max、thread_pool_timeout的捷径。如果只有一个值被指定，那么thread_pool_min和thread_pool_max都是用这个值。Thread_poll_timeout会失效。</p>
+<p>-T Varnish 有一个基于文本的管理接口，启动它的话可以在不停止 varnish 的情况下来 管理 varnish。</p>
+<p>-t      ttl     指定最小的TTL给cache中的内容。这是一个捷径设置default_ttl run-time 选项。</p>
+<p>综合分析<br>从varnish服务器的总体上来看，在每秒并发1.8W左右的情况下，采用缓存方式以Mmap file和Malloc方式都会导致两块网卡跑满，但以Mmap file的缓存方式启动I/O也会形成瓶颈，原因主要是varnish缓存的数据先会刷到磁盘上，然后在一次行读到内存中，这在访问量大的时候同时也会对I/O造成很大的压力。Malloc缓存方式虽然对I/O没有压力，因所有缓存数据都写到内存中。</p>
+<p>Varnish与Squid的对比<br>说到Varnish，不能不提Squid，Squid是一个高性能的代理缓存服务器，它和varnish之间有诸多的异同点，这里分析如下：<br>下面是他们之间的相同点：<br>（1）都是一个反向代理服务器。<br>（2）都是开源软件。<br>下面是它们的不同点，也是Varnish的优点：<br>（1）Varnish的稳定性很高，两者在完成相同负荷的工作时，Squid服务器发生故障的几率要高于Varnish，因为使用Squid要经常重启。<br>（2）Varnish访问速度更快，Varnish采用了“Visual Page Cache”技术，所有缓存数据都直接从内存读取，而squid是从硬盘读取，因而Varnish在访问速度方面会更快。<br>（3）Varnish可以支持更多的并发连接，因为Varnish的TCP连接释放要比Squid快。因而在高并发连接情况下可以支持更多TCP连接。<br>（4）Varnish可以通过管理端口，使用正则表达式批量的清除部分缓存，而Squid是做不到的。<br>（5） squid属于是单进程使用单核CPU，但Varnish是通过fork形式打开多进程来做处理，所以是合理的使用所有核来处理相应的请求。<br>当然，与传统的Squid相比，Varnish也是有缺点的，列举如下：<br>1）      varnish进程一旦Hang、Crash或者重启，缓存数据都会从内存中完全释放，此时所有请求都会发送到后端服务器，在高并发情况下，会给后端服务器造成很大压力。<br>2）      在varnish使用中如果单个url的请求通过HA/F5（负载均衡）每次请求不同的varnish服务器中，被请求varnish服务器都会被穿透到后端，而且同样的请求会在多台服务器上缓存，也会造成varnish的缓存的资源浪费，也会造成性能下降。</p>
+<p>解决方案：<br>1）      综上所述在访问量很大的情况下推荐使用varnish的内存缓存方式启动，而且后面需要跟多台squid服务器。主要为了防止前面的varnish服务、服务器被重启的情况下，前期肯定会有很多的穿透这样squid可以担当第二层CACHE，而且也弥补了varnish缓存在内存中重启都会释放的问题。<br>2）      这样的问题可以在负载均衡上做url哈希，让单个url请求固定请求到一台varnish服务器上，可以解决该问题。<br>注：上面的解决方法还需要全面的测试，没有经过证实。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p> title: Varnish_introduce<br>date: 2015-01-20 14:59:05</p>
+<h2 id="tags:代理服务">tags:代理服务</h2>
+<p>Varnish是一个轻量级的Cache和反向代理软件，先进的设计理念和成熟的设计框]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Akka框架]]></title>
