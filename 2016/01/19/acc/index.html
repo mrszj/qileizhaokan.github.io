@@ -7,15 +7,15 @@
   <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
 <meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
   
-    <title>how_to_use_php | 齐磊的博客</title>
+    <title>Akka框架 | 齐磊的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="seven">
     
-    <meta name="description" content="首先利用brew cask isntall xampp如果你没有安装brew
-homebrew-cask是一套建立在homebrew基础上的Mac软件安装命令行工具（想要详细了解homebrew，自己google）。拥有她只需要简单的3步：
+    <meta name="description" content="Akka框架什么是Actor？AKKA框架是一个平台，灵感来自ERlang，能更轻松地开发可扩展，实现多线程安全应用。虽然在大多数流行的语言并发是基于多线程之间的共享内存，使用同步方法防止写争夺，Akka提供的并发模型基于Actors。Actors提供一个简单统一模型:
 
-安装Xcode（Mac App Store免费一键下载）">
+隔离计算实体
+“Share">
     
     
     
@@ -77,15 +77,15 @@ homebrew-cask是一套建立在homebrew基础上的Mac软件安装命令行工�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/03/30/how-to-use-php/" title="how_to_use_php" itemprop="url">how_to_use_php</a>
+      <a href="/2016/01/19/acc/" title="Akka框架" itemprop="url">Akka框架</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qileizhaokan.github.io" title="seven">seven</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-03-30T13:37:30.000Z" itemprop="datePublished">2015-03-30</time>
-    更新日期:<time datetime="2015-03-30T13:44:16.000Z" itemprop="dateModified">2015-03-30</time>
+    <time datetime="2016-01-19T15:06:56.000Z" itemprop="datePublished">2016-01-19</time>
+    更新日期:<time datetime="2015-03-30T13:59:38.000Z" itemprop="dateModified">2015-03-30</time>
     
   </p>
 </header>
@@ -94,32 +94,38 @@ homebrew-cask是一套建立在homebrew基础上的Mac软件安装命令行工�
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先利用brew_cask_isntall_xampp"><span class="toc-number">1.</span> <span class="toc-text">首先利用brew cask isntall xampp</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Akka框架"><span class="toc-number">1.</span> <span class="toc-text">Akka框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Actor来自于哪里？"><span class="toc-number">1.1.</span> <span class="toc-text">Actor来自于哪里？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么使用Actor?"><span class="toc-number">1.2.</span> <span class="toc-text">为什么使用Actor?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Akka的作者"><span class="toc-number">1.3.</span> <span class="toc-text">Akka的作者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么使用Akka？"><span class="toc-number">1.4.</span> <span class="toc-text">为什么使用Akka？</span></a></li></ol></li></ol>
 		</div>
 		
-		<h2 id="首先利用brew_cask_isntall_xampp">首先利用brew cask isntall xampp</h2><pre><code>如果你没有安装brew
-homebrew-cask是一套建立在homebrew基础上的Mac软件安装命令行工具（想要详细了解homebrew，自己google）。拥有她只需要简单的3步：
-
-安装Xcode（Mac App Store免费一键下载）
-安装homebrew（一行命令直接搞定，easy）
-安装homebrew-cask（也是一行命令搞定，一点难度都木有）
-
-执行 以下命令
-<span class="comment"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br><span class="line"></span><br><span class="line">brew tap phinze/homebrew-cask &amp;&amp; brew install brew-cask</span><br></pre></td></tr></table></figure></span>
-</code></pre><p>继续执行最上面的命令 就ok</p>
-<p>在lanchpad中 打开xampp<br>一路狂点 加一些用户名秘密配置 就ok了</p>
-<p>下载preshop 安装 ok</p>
-<p>直接访问 </p>
+		<h1 id="Akka框架">Akka框架</h1><p>什么是Actor？<br>AKKA框架是一个平台，灵感来自ERlang，能更轻松地开发可扩展，实现多线程安全应用。虽然在大多数流行的语言并发是基于多线程之间的共享内存，使用同步方法防止写争夺，Akka提供的并发模型基于Actors。<br>Actors提供一个简单统一模型:</p>
+<ul>
+<li>隔离计算实体</li>
+<li>“Share nothing”</li>
+<li>没有任何地方同步</li>
+<li>异步消息传递</li>
+<li>不可变的消息</li>
+<li>Actors有类似消息的mailbox / queue</li>
+</ul>
+<hr>
+<h2 id="Actor来自于哪里？">Actor来自于哪里？</h2><p>首先是由Carl Hewitt在1973定义<br>由Erlang OTP (Open Telecom Platform) 推广<br>消息传递更加符合面向对象的原始意图<br>Alan Kay说:<br>“OOP 对于我来说仅仅意味着消息, 保护隐藏在内部进行状态处理，然后在后期和外界其他事物进行绑定。”</p>
+<h2 id="为什么使用Actor?">为什么使用Actor?</h2><p>没有使用Actor，你的CPU占用如下：<br><img src="http://www.jdon.com/concurrent/images/akka.jpg" alt="akka"><br>使用Actor会降低CPU占用：<br><img src="http://www.jdon.com/concurrent/images/akkacpu.jpg" alt="akka cpu"></p>
+<h2 id="Akka的作者">Akka的作者</h2><p>Jonas Bonér<br>经历：<br>AspectWerkz<br>JRockit<br>Terracotta<br>Typesafe 公司创始人，与Martin Oderksy (May 2011)一起</p>
+<h2 id="为什么使用Akka？">为什么使用Akka？</h2><p>垂直扩展Scale up<br>Akka actors是轻量，能够平均在一个系统创建数千个。<br>线程是重量的，场景切换相当慢。<br>横向扩展Scale out<br>Actor能够在代码没有任何修改时在远程运行<br>失败恢复和错误处理<br>更多信息请查看<a href="http://doc.akka.io/docs/akka/snapshot/scala/actors.html" target="_blank" rel="external">官网</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/技术/">技术</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qileizhaokan.github.io/2015/03/30/how-to-use-php/" data-title="how_to_use_php | 齐磊的博客" data-tsina="null" class="share clearfix">
+  <div data-url="http://qileizhaokan.github.io/2016/01/19/acc/" data-title="Akka框架 | 齐磊的博客" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -128,19 +134,11 @@ homebrew-cask是一套建立在homebrew基础上的Mac软件安装命令行工�
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/01/19/acc/" title="Akka框架">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Akka框架</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/03/30/hello-world/"  title="Hello World">
+<a href="/2015/03/30/how-to-use-php/"  title="how_to_use_php">
  <strong>NEXT:</strong><br/> 
- <span>Hello World
+ <span>how_to_use_php
 </span>
 </a>
 </div>
@@ -150,7 +148,7 @@ homebrew-cask是一套建立在homebrew基础上的Mac软件安装命令行工�
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="how_to_use_php" data-thread-key="how-to-use-php" data-author-key="seven" data-url="http://qileizhaokan.github.io/post/how-to-use-php"></div>
+	<div class="ds-thread" data-title="Akka框架" data-thread-key="acc" data-author-key="seven" data-url="http://qileizhaokan.github.io/post/acc"></div>
 	
 </section>
 
@@ -160,7 +158,7 @@ homebrew-cask是一套建立在homebrew基础上的Mac软件安装命令行工�
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先利用brew_cask_isntall_xampp"><span class="toc-number">1.</span> <span class="toc-text">首先利用brew cask isntall xampp</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Akka框架"><span class="toc-number">1.</span> <span class="toc-text">Akka框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Actor来自于哪里？"><span class="toc-number">1.1.</span> <span class="toc-text">Actor来自于哪里？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么使用Actor?"><span class="toc-number">1.2.</span> <span class="toc-text">为什么使用Actor?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Akka的作者"><span class="toc-number">1.3.</span> <span class="toc-text">Akka的作者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么使用Akka？"><span class="toc-number">1.4.</span> <span class="toc-text">为什么使用Akka？</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
