@@ -13,7 +13,8 @@
     <meta name="author" content="seven">
     
     <meta name="description" content="jbehave学习day 1
-introduce jbehavewhat’s the jbehave?JBehave是一个用java编写的BDD（Behavior-Driven-Design)框架， java界的Cucumber。(注: 1、BDD主要的目的是能够从业务领域专家的视角来编写测试用例，">
+introduce jbehavewhat’s the jbehave?JBehave是一个用java编写的BDD（Behavior-Driven-Design)框架， java界的Cucumber。
+(注: 1、BDD主要的目的是能够从业务领域专家的视角来编写测试用例">
     
     
     
@@ -83,7 +84,7 @@ introduce jbehavewhat’s the jbehave?JBehave是一个用java编写的BDD（Beha
     </p>
   <p class="article-time">
     <time datetime="2015-04-13T13:04:37.000Z" itemprop="datePublished">2015-04-13</time>
-    更新日期:<time datetime="2015-04-13T13:31:09.000Z" itemprop="dateModified">2015-04-13</time>
+    更新日期:<time datetime="2015-04-13T13:34:19.000Z" itemprop="dateModified">2015-04-13</time>
     
   </p>
 </header>
@@ -96,7 +97,9 @@ introduce jbehavewhat’s the jbehave?JBehave是一个用java编写的BDD（Beha
 		</div>
 		
 		<h2 id="jbehave学习">jbehave学习</h2><pre><code><span class="property">day</span> <span class="number">1</span>
-</code></pre><h3 id="introduce_jbehave">introduce jbehave</h3><h4 id="what’s_the_jbehave?">what’s the jbehave?</h4><pre><code>JBehave是一个用java编写的BDD（Behavior-Driven-Design)框架， java界的Cucumber。(注: 1、BDD主要的目的是能够从业务领域专家的视角来编写测试用例，以解决技术人员和业务领域专家的沟通问题。2、Cucumber是基于Ruby的BDD框架) 
+</code></pre><h3 id="introduce_jbehave">introduce jbehave</h3><h4 id="what’s_the_jbehave?">what’s the jbehave?</h4><pre><code>JBehave是一个用java编写的BDD（Behavior-Driven-Design)框架， java界的Cucumber。
+(注: 1、BDD主要的目的是能够从业务领域专家的视角来编写测试用例，
+以解决技术人员和业务领域专家的沟通问题。2、Cucumber是基于Ruby的BDD框架) 
 </code></pre><h3 id="jbehave_Feature">jbehave Feature</h3><pre><code><span class="number">1</span>）、纯Java实现，能调用java API的地方就能使用。 
 <span class="number">2</span>）、能够定义和执行基于文本的Story,让我们能够从用户价值出发进行开发。（BDD都是这个目的）。 
 <span class="number">3</span>）、User stories可以放在<span class="keyword">classpath</span>，也可通过外部URL传进来。 
@@ -112,7 +115,9 @@ introduce jbehavewhat’s the jbehave?JBehave是一个用java编写的BDD（Beha
 <span class="number">13</span>）、可以使用Junit或者任何基于anotation的测试框架运行Story测试 
 <span class="number">14</span>）、支持Maven，<span class="keyword">Ant</span>集成，通过脚本运行BDD测试脚本。
 </code></pre><h3 id="JBehave’s_structure">JBehave’s structure</h3><pre><code>Story：系统想要具有的功能 
-<span class="keyword">Scenario</span>：Story描述的功能的Key-Example 。插一句，如果一个功能你不能想出一个很好的例子，那么你就需要好好想想这个功能的价值了。个人感觉，此处借用了《Specification By <span class="keyword">Examples</span>》的思想，以实例说明功能更容易让人理解。 
+<span class="keyword">Scenario</span>：Story描述的功能的Key-Example 。插一句，如果一个功能你不能想出一个很好的例子，
+那么你就需要好好想想这个功能的价值了。个人感觉，
+此处借用了《Specification By <span class="keyword">Examples</span>》的思想，以实例说明功能更容易让人理解。 
 Steps：<span class="keyword">Scenario</span>中描述的实例的具体执行步骤。 
 </code></pre><h3 id="JBehave’s_grammar">JBehave’s grammar</h3><pre><code>e.g.:
 &lt;pre&gt;
@@ -137,8 +142,10 @@ Given the cart contains one item
 &lt;/code&gt;
 &lt;/pre&gt; 
 
-Meta:以键值对的方式提供一些关于Story和Scenario的标签信息，我们在运行Story的时候，可以通过这些标签作为过滤项，只运行我们想运行的信息。 
-Narrative：对当前Story对应功能的一个描述，和一般Story卡上的描述差不多，<span class="keyword">In</span> <span class="keyword">order</span> <span class="keyword">to</span> ….,<span class="keyword">As</span> a ……,I want <span class="keyword">to</span>……。 
+Meta:以键值对的方式提供一些关于Story和Scenario的标签信息，
+我们在运行Story的时候，可以通过这些标签作为过滤项，只运行我们想运行的信息。 
+Narrative：对当前Story对应功能的一个描述，和一般Story卡上的描述差不多，
+<span class="keyword">In</span> <span class="keyword">order</span> <span class="keyword">to</span> ….,<span class="keyword">As</span> a ……,I want <span class="keyword">to</span>……。 
 Scenario: 关于当前场景的描述 
 Given ：描述当前场景的Context的<span class="keyword">Step</span> 
 !--    : JBehave中的注释符 
