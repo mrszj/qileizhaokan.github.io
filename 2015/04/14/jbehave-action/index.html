@@ -13,7 +13,8 @@
     <meta name="author" content="seven">
     
     <meta name="description" content="JBEHAVE IN ACTION配置JBehave环境。1）、添加JBehave依赖包，基本的只需要添加jbehave-core和Junit包就足够了。 
-2）、配置IntelliJ的JBehave插件，详情参见https://github.com/kumaraman21/IntelliJBeha">
+2）、配置IntelliJ的JBehave插件，
+详情参见https://github.com/kumaraman21/IntelliJBeh">
     
     
     
@@ -83,7 +84,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-04-14T14:39:13.000Z" itemprop="datePublished">2015-04-14</time>
-    更新日期:<time datetime="2015-04-14T14:44:58.000Z" itemprop="dateModified">2015-04-14</time>
+    更新日期:<time datetime="2015-04-14T14:47:16.000Z" itemprop="dateModified">2015-04-14</time>
     
   </p>
 </header>
@@ -96,13 +97,19 @@
 		</div>
 		
 		<h1 id="JBEHAVE_IN_ACTION">JBEHAVE IN ACTION</h1><h2 id="配置JBehave环境。">配置JBehave环境。</h2><pre><code><span class="number">1</span>）、添加JBehave依赖包，基本的只需要添加jbehave-core和Junit包就足够了。 
-<span class="number">2</span>）、配置IntelliJ的JBehave插件，详情参见<span class="string">https:</span><span class="comment">//github.com/kumaraman21/IntelliJBehave/wiki </span>
-</code></pre><h2 id="实现一个JBehave的Story基本过程">实现一个JBehave的Story基本过程</h2><pre><code><span class="attribute">JBahave的测试用例主要由3部分组成，描述测试功能的story文件，story文件对应的Steps类和基于Junit的运行配置文件。Steps类是通过Anotation和正则匹配技术把story文件中的文本Step对应到Steps类中的方法，运行配置文件的主要作用是告诉junit去哪儿找story文件和Steps文件，把其配置在同一个Context中。实现一个story的基本过程如下</span>: <span class="string"></span>
+<span class="number">2</span>）、配置IntelliJ的JBehave插件，
+详情参见<span class="string">https:</span><span class="comment">//github.com/kumaraman21/IntelliJBehave/wiki </span>
+</code></pre><h2 id="实现一个JBehave的Story基本过程">实现一个JBehave的Story基本过程</h2><pre><code>JBahave的测试用例主要由<span class="number">3</span>部分组成，描述测试功能的story文件，story文件对应的
+Steps类和基于Junit的运行配置文件。Steps类是通过Anotation和正则匹配技术把
+story文件中的文本<span class="keyword">Step</span>对应到Steps类中的方法，运行配置文件的主要作用是告诉
+junit去哪儿找story文件和Steps文件，把其配置在同一个Context中。
+实现一个story的基本过程如下: 
 </code></pre><h3 id="写Story">写Story</h3><pre><code>Story代码  收藏代码
 Meta:  
 @author liuxianning  
 @theme  student  
-Narrative: <span class="keyword">In</span> <span class="keyword">order</span> <span class="keyword">to</span> <span class="keyword">get</span> a <span class="keyword">new</span> student,<span class="keyword">as</span> a teacher, I want <span class="keyword">to</span> add a student <span class="keyword">into</span> the <span class="keyword">Class</span>    
+Narrative: <span class="keyword">In</span> <span class="keyword">order</span> <span class="keyword">to</span> <span class="keyword">get</span> a <span class="keyword">new</span> student,<span class="keyword">as</span> a teacher,
+ I want <span class="keyword">to</span> add a student <span class="keyword">into</span> the <span class="keyword">Class</span>    
 Scenario: Add a student <span class="keyword">into</span> the <span class="keyword">class</span>  
 Given There <span class="keyword">is</span> a student  
 <span class="keyword">And</span> his name <span class="keyword">is</span> <span class="comment">'Lincoln'  </span>
@@ -134,15 +141,18 @@ Given There <span class="keyword">is</span> a student
     student.setHobby(hobby);  
 }  
 <span class="annotation">@Given</span>(<span class="string">"his father's name is '$fatherName'"</span>)  
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFatherName</span><span class="params">(@Named(<span class="string">"fatherName"</span>)</span>String fatherName) </span>{  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFatherName</span><span class="params">(@Named(<span class="string">"fatherName"</span>)</span>String fatherName)
+ </span>{  
     student.setFatherName(fatherName);  
 }  
 <span class="annotation">@Given</span>(<span class="string">"his mother's name is '$motherName'"</span>)  
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMotherName</span><span class="params">(@Named(<span class="string">"motherName"</span>)</span>String motherName) </span>{  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMotherName</span><span class="params">(@Named(<span class="string">"motherName"</span>)</span>String motherName)
+ </span>{  
     student.setMotherName(motherName);  
 }  
 <span class="annotation">@Given</span>(<span class="string">"his brother's name is '$brotherName'"</span>)  
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBrotherName</span><span class="params">(@Named(<span class="string">"brotherName"</span>)</span>String brotherName) </span>{  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBrotherName</span><span class="params">(@Named(<span class="string">"brotherName"</span>)</span>String brotherName) 
+</span>{  
     student.setBrotherName(brotherName);  
 }  
 <span class="annotation">@When</span>(<span class="string">"system add the student into class"</span>)  
@@ -151,18 +161,22 @@ Given There <span class="keyword">is</span> a student
     classRoom.addStudent(student);  
 }  
 <span class="annotation">@Then</span>(<span class="string">"we can get student '$studentName' from class"</span>)  
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkGetStudent</span><span class="params">(@Named(<span class="string">"studentName"</span>)</span>String studentName)</span>{  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkGetStudent</span><span class="params">(@Named(<span class="string">"studentName"</span>)</span>String studentName)
+</span>{  
      assertThat(student, is(classRoom.getStudent(studentName)));  
 }  
 </code></pre><p>}  </p>
 <h2 id="配置运行环境">配置运行环境</h2><pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">StudentStories</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">JUnitStories</span> {</span>   
 public <span class="type">Configuration</span> configuration() {  
     <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">MostUsefulConfiguration</span>().useStoryLoader(<span class="keyword">new</span> <span class="type">LoadFromClasspath</span>(<span class="keyword">this</span>.getClass()))  
-            .useStoryReporterBuilder(<span class="keyword">new</span> <span class="type">StoryReporterBuilder</span>().withCodeLocation(codeLocationFromClass(<span class="keyword">this</span>.getClass())));  
+            .useStoryReporterBuilder(<span class="keyword">new</span> <span class="type">StoryReporterBuilder</span>().withCodeLocation(codeLocationFromClass(
+            <span class="keyword">this</span>.getClass())));  
 }  
 <span class="annotation">@Override</span>  
-<span class="keyword">protected</span> <span class="type">List</span>&lt;<span class="type">String</span>&gt; storyPaths() {  
-    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">StoryFinder</span>().findPaths(codeLocationFromClass(<span class="keyword">this</span>.getClass()),<span class="string">"**/*.story"</span>,<span class="string">""</span>);  
+<span class="keyword">protected</span> <span class="type">List</span>&lt;<span class="type">String</span>&gt; storyPaths() 
+{  
+    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">StoryFinder</span>().findPaths(codeLocationFromClass(
+    <span class="keyword">this</span>.getClass()),<span class="string">"**/*.story"</span>,<span class="string">""</span>);  
 }  
 }  
 </code></pre><h2 id="执行结果,执行StudentStories类，即可得到运行结果。">执行结果,执行StudentStories类，即可得到运行结果。</h2>  
