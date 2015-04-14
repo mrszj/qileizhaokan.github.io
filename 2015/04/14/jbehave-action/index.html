@@ -1,0 +1,501 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu_union_verify" content="d1952c66cf48912e21c18c7c581f382a">
+  <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
+<meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
+  
+    <title>jbehave_action | 齐磊的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="seven">
+    
+    <meta name="description" content="JBEHAVE IN ACTION配置JBehave环境。1）、添加JBehave依赖包，基本的只需要添加jbehave-core和Junit包就足够了。 
+2）、配置IntelliJ的JBehave插件，详情参见https://github.com/kumaraman21/IntelliJBeha">
+    
+    
+    
+    
+    <link rel="alternate" href="atom.xml" title="齐磊的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            var _bdId ='391982416296a0d54221f59fe35250d4';
+             hm.src = "//hm.baidu.com/hm.js?" + _bdId;
+             var s = document.getElementsByTagName("script")[0]; 
+             s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+     
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="齐磊的博客">齐磊的博客</a></h1>
+				<a class="blog-motto">，DEV-OPS-BA-QA ,未来的全栈QA</a>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+                                            <form class="search" action=http://zhannei.baidu.com/cse/search target="_blank">
+                                            <label>Search</label>
+                                        <input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+					
+					</li>
+				</ul>
+                            </nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/14/jbehave-action/" title="jbehave_action" itemprop="url">jbehave_action</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://qileizhaokan.github.io" title="seven">seven</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-04-14T14:39:13.000Z" itemprop="datePublished">2015-04-14</time>
+    更新日期:<time datetime="2015-04-14T14:43:44.000Z" itemprop="dateModified">2015-04-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JBEHAVE_IN_ACTION"><span class="toc-number">1.</span> <span class="toc-text">JBEHAVE IN ACTION</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置JBehave环境。"><span class="toc-number">1.1.</span> <span class="toc-text">配置JBehave环境。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现一个JBehave的Story基本过程"><span class="toc-number">1.2.</span> <span class="toc-text">实现一个JBehave的Story基本过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#写Story"><span class="toc-number">1.2.1.</span> <span class="toc-text">写Story</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写Story对应的Steps类"><span class="toc-number">1.2.2.</span> <span class="toc-text">写Story对应的Steps类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置运行环境"><span class="toc-number">1.3.</span> <span class="toc-text">配置运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行结果,执行StudentStories类，即可得到运行结果。"><span class="toc-number">1.4.</span> <span class="toc-text">执行结果,执行StudentStories类，即可得到运行结果。</span></a></li></ol></li></ol>
+		</div>
+		
+		<h1 id="JBEHAVE_IN_ACTION">JBEHAVE IN ACTION</h1><h2 id="配置JBehave环境。">配置JBehave环境。</h2><pre><code><span class="number">1</span>）、添加JBehave依赖包，基本的只需要添加jbehave-core和Junit包就足够了。 
+<span class="number">2</span>）、配置IntelliJ的JBehave插件，详情参见<span class="string">https:</span><span class="comment">//github.com/kumaraman21/IntelliJBehave/wiki </span>
+</code></pre><h2 id="实现一个JBehave的Story基本过程">实现一个JBehave的Story基本过程</h2><pre><code><span class="attribute">JBahave的测试用例主要由3部分组成，描述测试功能的story文件，story文件对应的Steps类和基于Junit的运行配置文件。Steps类是通过Anotation和正则匹配技术把story文件中的文本Step对应到Steps类中的方法，运行配置文件的主要作用是告诉junit去哪儿找story文件和Steps文件，把其配置在同一个Context中。实现一个story的基本过程如下</span>: <span class="string"></span>
+</code></pre><h3 id="写Story">写Story</h3><pre><code>Story代码  收藏代码
+Meta:  
+@author liuxianning  
+@theme  student  
+Narrative: <span class="keyword">In</span> <span class="keyword">order</span> <span class="keyword">to</span> <span class="keyword">get</span> a <span class="keyword">new</span> student,<span class="keyword">as</span> a teacher, I want <span class="keyword">to</span> add a student <span class="keyword">into</span> the <span class="keyword">Class</span>    
+Scenario: Add a student <span class="keyword">into</span> the <span class="keyword">class</span>  
+Given There <span class="keyword">is</span> a student  
+<span class="keyword">And</span> his name <span class="keyword">is</span> <span class="comment">'Lincoln'  </span>
+<span class="keyword">And</span> his age <span class="keyword">is</span> <span class="comment">'18'  </span>
+<span class="keyword">And</span> his hobby <span class="keyword">is</span> <span class="comment">'basketball'  </span>
+<span class="keyword">And</span> his father<span class="comment">'s name is 'Mike'  </span>
+<span class="keyword">And</span> his mother<span class="comment">'s name is 'Mary'  </span>
+<span class="keyword">And</span> his brother<span class="comment">'s name is 'Luis'  </span>
+<span class="keyword">When</span> system add the student <span class="keyword">into</span> <span class="keyword">class</span>  
+<span class="keyword">Then</span> we can <span class="keyword">get</span> student <span class="comment">'Lincoln2' from class  </span>
+</code></pre><h3 id="写Story对应的Steps类">写Story对应的Steps类</h3><pre><code>Java代码  收藏代码
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentSteps</span> </span>{  
+<span class="keyword">private</span> ClassRoom classRoom;  
+<span class="keyword">private</span> Student student;  
+<span class="annotation">@Given</span>(<span class="string">"There is a student"</span>)  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initStudent</span><span class="params">()</span> </span>{  
+    student = <span class="keyword">new</span> Student();  
+}  
+<span class="annotation">@Given</span>(<span class="string">"his name is '$name'"</span>)  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(@Named(<span class="string">"name"</span>)</span>String name) </span>{  
+    student.setName(name);  
+}  
+<span class="annotation">@Given</span>(<span class="string">"his age is '$age'"</span>)  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(@Named(<span class="string">"age"</span>)</span>Integer age) </span>{  
+    student.setAge(age);  
+}  
+<span class="annotation">@Given</span>(<span class="string">"his hobby is '$hobby'"</span>)  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHobby</span><span class="params">(@Named(<span class="string">"hobbu"</span>)</span>String hobby) </span>{  
+    student.setHobby(hobby);  
+}  
+<span class="annotation">@Given</span>(<span class="string">"his father's name is '$fatherName'"</span>)  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFatherName</span><span class="params">(@Named(<span class="string">"fatherName"</span>)</span>String fatherName) </span>{  
+    student.setFatherName(fatherName);  
+}  
+<span class="annotation">@Given</span>(<span class="string">"his mother's name is '$motherName'"</span>)  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMotherName</span><span class="params">(@Named(<span class="string">"motherName"</span>)</span>String motherName) </span>{  
+    student.setMotherName(motherName);  
+}  
+<span class="annotation">@Given</span>(<span class="string">"his brother's name is '$brotherName'"</span>)  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBrotherName</span><span class="params">(@Named(<span class="string">"brotherName"</span>)</span>String brotherName) </span>{  
+    student.setBrotherName(brotherName);  
+}  
+<span class="annotation">@When</span>(<span class="string">"system add the student into class"</span>)  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addStudentIntoClass</span><span class="params">()</span></span>{  
+    classRoom = <span class="keyword">new</span> ClassRoom();  
+    classRoom.addStudent(student);  
+}  
+<span class="annotation">@Then</span>(<span class="string">"we can get student '$studentName' from class"</span>)  
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkGetStudent</span><span class="params">(@Named(<span class="string">"studentName"</span>)</span>String studentName)</span>{  
+     assertThat(student, is(classRoom.getStudent(studentName)));  
+}  
+</code></pre><p>}  </p>
+<h2 id="配置运行环境">配置运行环境</h2><pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">StudentStories</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">JUnitStories</span> {</span>   
+public <span class="type">Configuration</span> configuration() {  
+    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">MostUsefulConfiguration</span>().useStoryLoader(<span class="keyword">new</span> <span class="type">LoadFromClasspath</span>(<span class="keyword">this</span>.getClass()))  
+            .useStoryReporterBuilder(<span class="keyword">new</span> <span class="type">StoryReporterBuilder</span>().withCodeLocation(codeLocationFromClass(<span class="keyword">this</span>.getClass())));  
+}  
+<span class="annotation">@Override</span>  
+<span class="keyword">protected</span> <span class="type">List</span>&lt;<span class="type">String</span>&gt; storyPaths() {  
+    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">StoryFinder</span>().findPaths(codeLocationFromClass(<span class="keyword">this</span>.getClass()),<span class="string">"**/*.story"</span>,<span class="string">""</span>);  
+}  
+}  
+</code></pre><h2 id="执行结果,执行StudentStories类，即可得到运行结果。">执行结果,执行StudentStories类，即可得到运行结果。</h2>  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/BDD/">BDD</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://qileizhaokan.github.io/2015/04/14/jbehave-action/" data-title="jbehave_action | 齐磊的博客" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/19/acc/" title="Akka框架">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Akka框架</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/13/jbehave/"  title="jbehave">
+ <strong>NEXT:</strong><br/> 
+ <span>jbehave
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="jbehave_action" data-thread-key="jbehave-action" data-author-key="seven" data-url="http://qileizhaokan.github.io/post/jbehave-action"></div>
+	
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JBEHAVE_IN_ACTION"><span class="toc-number">1.</span> <span class="toc-text">JBEHAVE IN ACTION</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置JBehave环境。"><span class="toc-number">1.1.</span> <span class="toc-text">配置JBehave环境。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现一个JBehave的Story基本过程"><span class="toc-number">1.2.</span> <span class="toc-text">实现一个JBehave的Story基本过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#写Story"><span class="toc-number">1.2.1.</span> <span class="toc-text">写Story</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写Story对应的Steps类"><span class="toc-number">1.2.2.</span> <span class="toc-text">写Story对应的Steps类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置运行环境"><span class="toc-number">1.3.</span> <span class="toc-text">配置运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行结果,执行StudentStories类，即可得到运行结果。"><span class="toc-number">1.4.</span> <span class="toc-text">执行结果,执行StudentStories类，即可得到运行结果。</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	<div class="social-list" class="clearfix">
+		
+		
+		
+		
+		
+	</div>
+</div>
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/BDD/" title="BDD">BDD<sup>2</sup></a></li>
+		
+			<li><a href="/tags/技术/" title="技术">技术<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+      <li><a href="http://gengbiao.me" target="_blank" title="coney">coney's Blog</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/BDD/" style="font-size: 20px;">BDD</a><a href="/tags/技术/" style="font-size: 10px;">技术</a>
+    </div>
+  </div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+    
+            <p class="copyright"> © 2015 
+		
+		<a href="http://qileizhaokan.github.io" target="_blank" title="seven">seven</a>
+		
+            && Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> && Theme by <a href="http://gengbiao.me" target="_blank" title="seven">齐磊</a>
+            </div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+<script>
+    
+        var _bdImg = '4';
+    
+    window._bd_share_config={
+        "common":{
+            "bdSnsKey":{
+
+            },
+            "bdText":"",
+            "bdMini":"2",
+            "bdMiniList":[
+                "qzone",
+                "tsina",
+                "weixin",
+                "renren",
+                "tqq",
+                "tieba",
+                "douban",
+                "sqq",
+                "diandian",
+                "huaban",
+                "youdao",
+                "mail",
+                "ty",
+                "fbook",
+                "twi",
+                "linkedin",
+                "copy",
+                "print"
+            ],
+            "bdPic":"",
+            "bdStyle":"0",
+            "bdSize":"16"
+        },
+        "slide":{
+            "type":"slide",
+            "bdImg":_bdImg,
+            "bdPos":"right",
+            "bdTop":"350"
+        },
+        "image":{
+            "viewList":[
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ],
+            "viewText":"分享：",
+            "viewSize":"16"
+        },
+        "selectShare":{
+            "bdContainerClass":null,
+            "bdSelectMiniList":[
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ]
+        }
+    };
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'null', 'null');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
+
