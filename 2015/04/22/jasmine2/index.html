@@ -1,0 +1,561 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu_union_verify" content="d1952c66cf48912e21c18c7c581f382a">
+  <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
+<meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
+  
+    <title>Javascript测试框架Jasmine（二）：Matchers | 齐磊的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="seven">
+    
+    <meta name="description" content="这一篇讲讲Matcher。在Jasmine中，每个Matcher实现一个“期望值”和“实际值”的布尔判断，Jasmine会根据Mather判断expectation是true 还是false ，然后决定spec是测试通过还是失败。所有Matcher可以通过not 执行否定判断。例如：
+it(&quot;not">
+    
+    
+    
+    
+    <link rel="alternate" href="atom.xml" title="齐磊的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            var _bdId ='391982416296a0d54221f59fe35250d4';
+             hm.src = "//hm.baidu.com/hm.js?" + _bdId;
+             var s = document.getElementsByTagName("script")[0]; 
+             s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+     
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="齐磊的博客">齐磊的博客</a></h1>
+				<a class="blog-motto">，DEV-OPS-BA-QA ,未来的全栈QA</a>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+                                            <form class="search" action=http://zhannei.baidu.com/cse/search target="_blank">
+                                            <label>Search</label>
+                                        <input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+					
+					</li>
+				</ul>
+                            </nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/22/jasmine2/" title="Javascript测试框架Jasmine（二）：Matchers" itemprop="url">Javascript测试框架Jasmine（二）：Matchers</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://qileizhaokan.github.io" title="seven">seven</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-04-21T16:01:04.000Z" itemprop="datePublished">2015-04-22</time>
+    更新日期:<time datetime="2015-04-22T14:14:58.000Z" itemprop="dateModified">2015-04-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#toBe"><span class="toc-number">1.</span> <span class="toc-text">toBe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toEqual"><span class="toc-number">2.</span> <span class="toc-text">toEqual</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toMatch"><span class="toc-number">3.</span> <span class="toc-text">toMatch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeDefined"><span class="toc-number">4.</span> <span class="toc-text">toBeDefined</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeUndefined"><span class="toc-number">5.</span> <span class="toc-text">toBeUndefined</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeNull"><span class="toc-number">6.</span> <span class="toc-text">toBeNull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeTruthy"><span class="toc-number">7.</span> <span class="toc-text">toBeTruthy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeFalsy"><span class="toc-number">8.</span> <span class="toc-text">toBeFalsy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toContain"><span class="toc-number">9.</span> <span class="toc-text">toContain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeLessThan"><span class="toc-number">10.</span> <span class="toc-text">toBeLessThan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeGreaterThan"><span class="toc-number">11.</span> <span class="toc-text">toBeGreaterThan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeCloseTo"><span class="toc-number">12.</span> <span class="toc-text">toBeCloseTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toThrow"><span class="toc-number">13.</span> <span class="toc-text">toThrow</span></a></li></ol>
+		</div>
+		
+		<p>这一篇讲讲Matcher。在Jasmine中，每个Matcher实现一个“期望值”和“实际值”的布尔判断，Jasmine会根据Mather判断expectation是true 还是false ，然后决定spec是测试通过还是失败。所有Matcher可以通过not 执行否定判断。例如：</p>
+<pre><code>it(<span class="string">"not示例"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span> {
+expect(<span class="keyword">false</span>).<span class="keyword">not</span>.toBe(<span class="keyword">true</span>);
+});
+</code></pre><p>Jasmine提供了丰富的内置Matchers，下面简单讲一下：</p>
+<h2 id="toBe">toBe</h2><p>toBe Matcher用来执行=== 对比：</p>
+<pre><code>it(<span class="string">"toBe Matcher用来执行===对比"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+<span class="keyword">var</span> a = <span class="number">12</span>;
+<span class="keyword">var</span> b = a;
+expect(a).toBe(b);
+expect(a).not.toBe(<span class="literal">null</span>);
+});
+</code></pre><h2 id="toEqual">toEqual</h2><p>判断两个对象是否相等，可以对比简单的值类型的变量和对象：</p>
+<pre><code>describe(<span class="string">"toEqual判断两个对象是否相等："</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+it(<span class="string">"对比简单的值类型的变量"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">var</span> a = <span class="number">12</span>;
+    expect(a).toEqual(<span class="number">12</span>);
+});
+it(<span class="string">"对比对象"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">var</span> foo = {
+        a: <span class="number">12</span>,
+        b: <span class="number">34</span>
+    };
+    <span class="keyword">var</span> bar = {
+        a: <span class="number">12</span>,
+        b: <span class="number">34</span>
+    };
+    expect(foo).toEqual(bar);
+});
+});
+</code></pre><h2 id="toMatch">toMatch</h2><p>使用正则匹配：</p>
+<pre><code>it(<span class="string">"toMatch用来进行正则匹配"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+<span class="keyword">var</span> message = <span class="string">"foo bar baz"</span>;
+expect(message).toMatch(<span class="regexp">/bar/</span>);
+expect(message).toMatch(<span class="string">"bar"</span>);
+expect(message).not.toMatch(<span class="regexp">/quux/</span>);
+});
+</code></pre><h2 id="toBeDefined">toBeDefined</h2><p>判断是否非undefined：</p>
+<pre><code>it(<span class="string">"toBeDefined判断是否非undefined"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+<span class="keyword">var</span> a = {
+    foo: <span class="string">"foo"</span>
+};
+expect(a.foo).toBeDefined();
+expect(a.bar).not.toBeDefined();
+});
+</code></pre><h2 id="toBeUndefined">toBeUndefined</h2><p>判断是否是undefined：</p>
+<pre><code>it(<span class="string">"toBeUndefined判断是否是undefined"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+<span class="keyword">var</span> a = {
+    foo: <span class="string">"foo"</span>
+};
+expect(a.foo).not.toBeUndefined();
+expect(a.bar).toBeUndefined();
+});
+</code></pre><h2 id="toBeNull">toBeNull</h2><p>判断是否为null：</p>
+<pre><code>it(<span class="string">"toBeNull用来判断是否为null"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+<span class="keyword">var</span> a = <span class="literal">null</span>;
+<span class="keyword">var</span> foo = <span class="string">"foo"</span>;
+expect(<span class="literal">null</span>).toBeNull();
+expect(a).toBeNull();
+expect(foo).not.toBeNull();
+});
+</code></pre><h2 id="toBeTruthy">toBeTruthy</h2><p>布尔测试，判断值是否是，或者可以转换为true：</p>
+<pre><code>it(<span class="string">"toBeTruthy执行布尔测试，判断值是否是，或者可以转换为true"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+<span class="keyword">var</span> a, foo = <span class="string">"foo"</span>;
+expect(foo).toBeTruthy();
+expect(a).not.toBeTruthy();
+});
+</code></pre><h2 id="toBeFalsy">toBeFalsy</h2><p>布尔测试，于toBeTruthy相反：</p>
+<pre><code>it(<span class="string">"toBeFalsy和toBeTruthy相反"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+<span class="keyword">var</span> a, foo = <span class="string">"foo"</span>;
+expect(a).toBeFalsy();
+expect(foo).not.toBeFalsy();
+});
+</code></pre><h2 id="toContain">toContain</h2><p>判断一个数组是否包含某个值：</p>
+<pre><code>it(<span class="string">"toContain判断一个数组是否包含某个值"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+<span class="keyword">var</span> a = [<span class="string">"foo"</span>, <span class="string">"bar"</span>, <span class="string">"baz"</span>];
+expect(a).toContain(<span class="string">"bar"</span>);
+expect(a).not.toContain(<span class="string">"quux"</span>);
+});
+</code></pre><h2 id="toBeLessThan">toBeLessThan</h2><p>数字大小比较：</p>
+<pre><code>it(<span class="string">"toBeLessThan执行数字大小比较"</span>, <span class="function"><span class="keyword">function</span>(</span>) {
+var <span class="built_in">pi</span> = <span class="number">3.1415926</span>,
+    e = <span class="number">2.78</span>;
+expect(e).toBeLessThan(<span class="built_in">pi</span>);
+expect(<span class="built_in">pi</span>).<span class="keyword">not</span>.toBeLessThan(e);
+});
+</code></pre><h2 id="toBeGreaterThan">toBeGreaterThan</h2><p>和toBeLessThan相反：</p>
+<pre><code>it(<span class="string">"toBeGreaterThan和toBeLessThan相反"</span>, <span class="function"><span class="keyword">function</span>(</span>) {
+var <span class="built_in">pi</span> = <span class="number">3.1415926</span>,
+    e = <span class="number">2.78</span>;
+expect(<span class="built_in">pi</span>).toBeGreaterThan(e);
+expect(e).<span class="keyword">not</span>.toBeGreaterThan(<span class="built_in">pi</span>);
+});
+</code></pre><h2 id="toBeCloseTo">toBeCloseTo</h2><p>前面都作用一目了然，这个就有一点点不还理解了，还是想看例子：</p>
+<pre><code>it(<span class="string">"toBeCloseTo示例"</span>, <span class="function"><span class="keyword">function</span>(</span>) {
+var <span class="built_in">pi</span> = <span class="number">3.1415926</span>,
+    e = <span class="number">2.78</span>;
+expect(<span class="built_in">pi</span>).<span class="keyword">not</span>.toBeCloseTo(e, <span class="number">2</span>);
+expect(<span class="built_in">pi</span>).toBeCloseTo(e, <span class="number">0</span>);
+});
+</code></pre><p>再看看它的源码：</p>
+<pre><code>getJasmineRequireObj().toBeCloseTo = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
+<span class="function"><span class="keyword">function</span> <span class="title">toBeCloseTo</span><span class="params">()</span> </span>{
+    <span class="keyword">return</span> {
+        compare: <span class="function"><span class="keyword">function</span> <span class="params">(actual, expected, precision)</span> </span>{
+            <span class="keyword">if</span> (precision !== <span class="number">0</span>) {
+                precision = precision || <span class="number">2</span>;
+            }
+            <span class="keyword">return</span> {
+                pass: <span class="built_in">Math</span>.abs(expected - actual) &lt; (<span class="built_in">Math</span>.pow(<span class="number">10</span>, -precision) / <span class="number">2</span>)
+            };
+        }
+    };
+}
+<span class="keyword">return</span> toBeCloseTo;
+};
+</code></pre><p>这下就比较清晰了，toBeCloseTo 是比较两个值是否足够接近（不一定要相等），而这个“足够接近”就是toBeCloseTo 的第二个参数指定的，它表示小数点后位数除以2（Math.pow(10, -precision) / 2 ）。</p>
+<h2 id="toThrow">toThrow</h2><p>判断一个函数是否有抛出异常：</p>
+<pre><code>it(<span class="string">"toThrow判断一个函数是否有抛出异常"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+<span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">return</span> <span class="number">1</span> + <span class="number">2</span>;
+};
+<span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">return</span> a + <span class="number">1</span>; <span class="comment">//a不存在</span>
+};
+expect(foo).not.toThrow();
+expect(bar).toThrow();
+});
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/BDD-JS/">BDD,JS</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://qileizhaokan.github.io/2015/04/22/jasmine2/" data-title="Javascript测试框架Jasmine（二）：Matchers | 齐磊的博客" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/22/jasmine3/" title="Jasmine（三）：Setup、Teardown、嵌套describe等">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Jasmine（三）：Setup、Teardown、嵌套describe等</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/20/jasmine/"  title="Javascript测试框架Jasmine（一）：简介">
+ <strong>NEXT:</strong><br/> 
+ <span>Javascript测试框架Jasmine（一）：简介
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="Javascript测试框架Jasmine（二）：Matchers" data-thread-key="jasmine2" data-author-key="seven" data-url="http://qileizhaokan.github.io/post/jasmine2"></div>
+	
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#toBe"><span class="toc-number">1.</span> <span class="toc-text">toBe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toEqual"><span class="toc-number">2.</span> <span class="toc-text">toEqual</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toMatch"><span class="toc-number">3.</span> <span class="toc-text">toMatch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeDefined"><span class="toc-number">4.</span> <span class="toc-text">toBeDefined</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeUndefined"><span class="toc-number">5.</span> <span class="toc-text">toBeUndefined</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeNull"><span class="toc-number">6.</span> <span class="toc-text">toBeNull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeTruthy"><span class="toc-number">7.</span> <span class="toc-text">toBeTruthy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeFalsy"><span class="toc-number">8.</span> <span class="toc-text">toBeFalsy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toContain"><span class="toc-number">9.</span> <span class="toc-text">toContain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeLessThan"><span class="toc-number">10.</span> <span class="toc-text">toBeLessThan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeGreaterThan"><span class="toc-number">11.</span> <span class="toc-text">toBeGreaterThan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toBeCloseTo"><span class="toc-number">12.</span> <span class="toc-text">toBeCloseTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toThrow"><span class="toc-number">13.</span> <span class="toc-text">toThrow</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	<div class="social-list" class="clearfix">
+		
+		
+		
+		
+		
+	</div>
+</div>
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/BDD/" title="BDD">BDD<sup>4</sup></a></li>
+		
+			<li><a href="/tags/BDD-JS/" title="BDD,JS">BDD,JS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/技术/" title="技术">技术<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+      <li><a href="http://gengbiao.me" target="_blank" title="coney">coney's Blog</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/BDD/" style="font-size: 20px;">BDD</a><a href="/tags/BDD-JS/" style="font-size: 10px;">BDD,JS</a><a href="/tags/技术/" style="font-size: 10px;">技术</a>
+    </div>
+  </div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+    
+            <p class="copyright"> © 2015 
+		
+		<a href="http://qileizhaokan.github.io" target="_blank" title="seven">seven</a>
+		
+            && Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> && Theme by <a href="http://gengbiao.me" target="_blank" title="seven">齐磊</a>
+            </div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+<script>
+    
+        var _bdImg = '4';
+    
+    window._bd_share_config={
+        "common":{
+            "bdSnsKey":{
+
+            },
+            "bdText":"",
+            "bdMini":"2",
+            "bdMiniList":[
+                "qzone",
+                "tsina",
+                "weixin",
+                "renren",
+                "tqq",
+                "tieba",
+                "douban",
+                "sqq",
+                "diandian",
+                "huaban",
+                "youdao",
+                "mail",
+                "ty",
+                "fbook",
+                "twi",
+                "linkedin",
+                "copy",
+                "print"
+            ],
+            "bdPic":"",
+            "bdStyle":"0",
+            "bdSize":"16"
+        },
+        "slide":{
+            "type":"slide",
+            "bdImg":_bdImg,
+            "bdPos":"right",
+            "bdTop":"350"
+        },
+        "image":{
+            "viewList":[
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ],
+            "viewText":"分享：",
+            "viewSize":"16"
+        },
+        "selectShare":{
+            "bdContainerClass":null,
+            "bdSelectMiniList":[
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ]
+        }
+    };
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'null', 'null');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
+
