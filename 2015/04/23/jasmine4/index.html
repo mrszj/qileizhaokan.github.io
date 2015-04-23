@@ -7,12 +7,13 @@
   <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
 <meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
   
-    <title>Jasmine（一）：简介 | 齐磊的博客</title>
+    <title>Jasmine（四）：自定义Matcher | 齐磊的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="seven">
     
-    <meta name="description" content="Javascript测试框架Jasmine（一）：简介随着javascript程序的复杂度加深，测试的重要性越来越明显。Javascript的测试框架有很多，例如：Jasmine，Qunit，JsTestDriver，JSUnit，Mocha等。经过一番对比后决定使用Jasmine。Jasmine是">
+    <meta name="description" content="一个项目常常需要封装自定义的Matcher来在多个spec中使用，这次讲下怎么写兼容Jasmine的自定义Matcher。
+自定义的Matcher从本质上讲是一个对比函数，它的函数名就是暴露给expect调用的名称，它接受actual 值和expected 值。这个函数会传入Jasmine作用域中，">
     
     
     
@@ -74,15 +75,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/20/jasmine/" title="Jasmine（一）：简介" itemprop="url">Jasmine（一）：简介</a>
+      <a href="/2015/04/23/jasmine4/" title="Jasmine（四）：自定义Matcher" itemprop="url">Jasmine（四）：自定义Matcher</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qileizhaokan.github.io" title="seven">seven</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-04-20T14:58:38.000Z" itemprop="datePublished">2015-04-20</time>
-    更新日期:<time datetime="2015-04-22T14:16:18.000Z" itemprop="dateModified">2015-04-22</time>
+    <time datetime="2015-04-23T15:09:29.000Z" itemprop="datePublished">2015-04-23</time>
+    更新日期:<time datetime="2015-04-23T15:15:12.000Z" itemprop="dateModified">2015-04-23</time>
     
   </p>
 </header>
@@ -91,46 +92,99 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript测试框架Jasmine（一）：简介"><span class="toc-number">1.</span> <span class="toc-text">Javascript测试框架Jasmine（一）：简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载运行"><span class="toc-number">1.1.</span> <span class="toc-text">下载运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Suites"><span class="toc-number">1.2.</span> <span class="toc-text">Suites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Specs"><span class="toc-number">1.3.</span> <span class="toc-text">Specs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Expectations"><span class="toc-number">1.4.</span> <span class="toc-text">Expectations</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matcher构造函数"><span class="toc-number">1.</span> <span class="toc-text">Matcher构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#compare函数"><span class="toc-number">2.</span> <span class="toc-text">compare函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Result"><span class="toc-number">2.1.</span> <span class="toc-text">Result</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误信息"><span class="toc-number">2.2.</span> <span class="toc-text">错误信息</span></a></li></ol></li></ol>
 		</div>
 		
-		<h1 id="Javascript测试框架Jasmine（一）：简介">Javascript测试框架Jasmine（一）：简介</h1><pre><code>随着javascript程序的复杂度加深，测试的重要性越来越明显。Javascript的测试框架有很多，例如：Jasmine，Qunit，JsTestDriver，JSUnit，Mocha等。经过一番对比后决定使用Jasmine。Jasmine是一套Javascript行为驱动开发框架（BDD），干净简洁，表达力强且易于组织，不依赖于其他任何框架和DOM，可运行于Node.js，浏览器端或移动端。
-</code></pre><h2 id="下载运行">下载运行</h2><pre><code>下载GitHub上的项目。解压后，dist 下就是各个版本的独立运行包，解压最新的2.0.0版本，双击打开SpecRunner.html 即可运行测试，注意要在SpecRunner.html 的<span class="tag">&lt;<span class="title">head</span>&gt;</span> 内引用Jasmine的js文件和测试文件。想简单使用的话，将soucre/spec 下的测试文件替换成你自己的即可。
+		<p>一个项目常常需要封装自定义的Matcher来在多个spec中使用，这次讲下怎么写兼容Jasmine的自定义Matcher。</p>
+<p>自定义的Matcher从本质上讲是一个对比函数，它的函数名就是暴露给expect调用的名称，它接受actual 值和expected 值。这个函数会传入Jasmine作用域中，可以在beforeEach 中调用到。每次spec执行完后，都会把自定义Matchers卸载，下面看个简单例子：</p>
+<pre><code><span class="keyword">var</span> customMatchers = {
+ toBeGoofy: function(util, customEqualityTesters) {
+<span class="keyword">return</span> {
+  compare: function(actual, expected) {
+    <span class="keyword">if</span> (expected === undefined) {
+      expected = '';
+    }
+    <span class="keyword">var</span> <span class="literal">result</span> = {};
+    <span class="literal">result</span>.pass = util.equals(actual.hyuk, <span class="string">"gawrsh"</span> + expected, customEqualityTesters);
+    <span class="keyword">if</span> (<span class="literal">result</span>.pass) {
+      <span class="literal">result</span>.message = <span class="string">"Expected "</span> + actual + <span class="string">" not to be quite so goofy"</span>;
+    } <span class="keyword">else</span> {
+      <span class="literal">result</span>.message = <span class="string">"Expected "</span> + actual + <span class="string">" to be goofy, but it was not very goofy"</span>;
+    }
+    <span class="keyword">return</span> <span class="literal">result</span>;
+  }
+};
+</code></pre><p>  }<br>};</p>
+<h2 id="Matcher构造函数">Matcher构造函数</h2><p>自定义Matcher的构造函数接受两个参数，util ：给Matcher使用的一组工具函数；customEqualityTesters ：调用util.equals 的时候需要传入。</p>
+<p>构造函数需要返回一个对象，这个对象要包含名为compare 的函数，执行Matcher时会调用compare 函数。</p>
+<h2 id="compare函数">compare函数</h2><p>compare 函数接收传入expect 的值作为它的第一个参数actual ，如果存在的话，传入Matcher自己的参数会作为compare 函数的第二个参数。上例中的toBeGoofy 就会接收一个可选的expected 参数，默认不需要传入。</p>
+<h3 id="Result">Result</h3><p>compare 函数必须返回一个结果对象。结果对象必须包含一个布尔值类型的pass 属性，告诉expectation Matcher是否通过。如果expectation调用了.not 的话，会做相反的判断。上例中的toBeGoofy 测试实际值得hyuk 属性是否和期望值相等。</p>
+<h3 id="错误信息">错误信息</h3><p>如果不指定错误信息，expectation会尝试用Matcher生成一个错误信息。但是，如果返回的result对象包含了message 属性的话，会使用message 的值作错误提示。</p>
+<p>先看看指定message 的效果</p>
+<pre><code><span class="keyword">var</span> customMatchers = {
+toBeGoofy: function(util, customEqualityTesters) {
+<span class="keyword">return</span> {
+  compare: function(actual, expected) {
+    <span class="keyword">if</span> (expected === undefined) {
+      expected = '';
+    }
+    <span class="keyword">var</span> <span class="literal">result</span> = {};
+    <span class="literal">result</span>.pass = util.equals(actual.hyuk, <span class="string">"gawrsh"</span> + expected, customEqualityTesters);
+    <span class="keyword">if</span> (<span class="literal">result</span>.pass) {
+      <span class="literal">result</span>.message = <span class="string">"通过了，通过了，通过了..."</span>;
+    } <span class="keyword">else</span> {
+      <span class="literal">result</span>.message = <span class="string">"没通过，没通过，没通过..."</span>;
+    }
+    <span class="keyword">return</span> <span class="literal">result</span>;
+  }
+};
+}
+};
 
-<span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
-<span class="tag">&lt;<span class="title">html</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=UTF-8"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">title</span>&gt;</span>Jasmine Spec Runner v2.0.0<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-<span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"shortcut icon"</span> <span class="attribute">type</span>=<span class="value">"image/png"</span> <span class="attribute">href</span>=<span class="value">"lib/jasmine-2.0.0/jasmine_favicon.png"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"lib/jasmine-2.0.0/jasmine.css"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"lib/jasmine-2.0.0/jasmine.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"lib/jasmine-2.0.0/jasmine-html.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"lib/jasmine-2.0.0/boot.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="comment">&lt;!-- 被测试的代码 --&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"src/Player.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"src/Song.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="comment">&lt;!-- 测试用例代码 --&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"spec/SpecHelper.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"spec/PlayerSpec.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+describe(<span class="string">"测试自定义错误信息"</span>, function() {
+beforeEach(function() {
+jasmine.addMatchers(customMatchers);
+  });
 
-我把官方的例子部署在了我的Demo站上，点击查看。下面讲一些基础。
-</code></pre><h2 id="Suites">Suites</h2><pre><code>Suites可以理解为一组测试，使用全局的Jasmin函数<span class="operator"><span class="keyword">describe</span> 创建。<span class="keyword">describe</span> 函数接受两个参数，一个字符串和一个函数。字符串是这个Suites的名字或标题（通常描述下测试内容），函数是实现Suites的代码块。</span>
-</code></pre><h2 id="Specs">Specs</h2><pre><code>Specs可以理解为一个测试，使用全局的Jasmin函数<span class="keyword">it</span> 创建。和describe 一样接受两个参数，一个字符串和一个函数，函数就是要执行的测试，字符串就是测试的名字。一个Spec可以包含多个expectations来测试代码。在Jasmine中，一个expectations就是一个断言，只能是<span class="constant">true</span> 或<span class="constant">false</span> 。只有全部expectations是<span class="constant">true</span> 的时候spec才会通过。
-
-由于describe 和<span class="keyword">it</span> 块实质上都函数，所有他可以包含任何的可执行代码。javascript的作用域规则也是适用的，所以describe 内定义的变量，其内部所有的<span class="keyword">it</span> 都能访问到。
-</code></pre><h2 id="Expectations">Expectations</h2><pre><code>expectations由expect 函数创建。接受一个参数。和Matcher一起联用，设置测试的预期值。
-
-最后看个最简单的例子：
-
-describe(<span class="string">"A suite"</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
-it(<span class="string">"contains spec with an expectation"</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
-    expect(<span class="literal">true</span>).toBe(<span class="literal">true</span>);
+it(<span class="string">"这是个失败的测试"</span>, function() {
+expect({
+  hyuk: 'gawrsh'
+}).toBeGoofy(<span class="number">123</span>);
 });
+});
+</code></pre><p>再看看没有指定message 的效果：</p>
+<pre><code><span class="keyword">var</span> customMatchers = {
+toBeGoofy: function(util, customEqualityTesters) {
+<span class="keyword">return</span> {
+  compare: function(actual, expected) {
+    <span class="keyword">if</span> (expected === undefined) {
+      expected = '';
+    }
+    <span class="keyword">var</span> <span class="literal">result</span> = {};
+    <span class="literal">result</span>.pass = util.equals(actual.hyuk, <span class="string">"gawrsh"</span> + expected, customEqualityTesters);
+    <span class="keyword">return</span> <span class="literal">result</span>;
+  }
+};
+}
+};
+describe(<span class="string">"测试自动生成的错误信息"</span>, function() {
+beforeEach(function() {
+jasmine.addMatchers(customMatchers);
+});
+it(<span class="string">"这是个失败的测试"</span>, function() {
+expect({
+  hyuk: 'gawrsh'
+}).toBeGoofy(<span class="number">123</span>);
+});
+});
+</code></pre><p>点击这里查看效果，可以看出，Jasmine把Matcher的名字，按照驼峰命名法分隔开，生成错误信息。</p>
+<p>自定义“否定”比较规则<br>如果你的自定义Matcher需要控制.not 的行为的话（不是简单的布尔值取反），那么你的Matcher构造函数里除了compare ，还可以包含另一个函数negativeCompare 。当使用了.not 的时候会执行negativeCompare 。</p>
+<p>Matcher的注册和使用<br>向Jasmine注册自定义的Matcher后，所有的expectation都可以使用该Matcher。</p>
+<pre><code>describe(<span class="string">"注册'toBeGoofy'"</span>, <span class="keyword">function</span>() {
+beforeEach(<span class="keyword">function</span>() {
+    jasmine.addMatchers(customMatchers);
+});
+//<span class="keyword">...</span>
 });
 </code></pre>  
 	</div>
@@ -146,7 +200,7 @@ it(<span class="string">"contains spec with an expectation"</span>, <span class=
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qileizhaokan.github.io/2015/04/20/jasmine/" data-title="Jasmine（一）：简介 | 齐磊的博客" data-tsina="null" class="share clearfix">
+  <div data-url="http://qileizhaokan.github.io/2015/04/23/jasmine4/" data-title="Jasmine（四）：自定义Matcher | 齐磊的博客" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -156,18 +210,18 @@ it(<span class="string">"contains spec with an expectation"</span>, <span class=
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/04/22/jasmine2/" title="Jasmine（二）：Matchers">
+ <a href="/2016/01/19/acc/" title="Akka框架">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Jasmine（二）：Matchers</span>
+  Akka框架</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/04/14/jbehave-action/"  title="jbehave in action">
+<a href="/2015/04/22/jasmine3/"  title="Jasmine（三）：Setup、Teardown、嵌套describe等">
  <strong>NEXT:</strong><br/> 
- <span>jbehave in action
+ <span>Jasmine（三）：Setup、Teardown、嵌套describe等
 </span>
 </a>
 </div>
@@ -177,7 +231,7 @@ it(<span class="string">"contains spec with an expectation"</span>, <span class=
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="Jasmine（一）：简介" data-thread-key="jasmine" data-author-key="seven" data-url="http://qileizhaokan.github.io/post/jasmine"></div>
+	<div class="ds-thread" data-title="Jasmine（四）：自定义Matcher" data-thread-key="jasmine4" data-author-key="seven" data-url="http://qileizhaokan.github.io/post/jasmine4"></div>
 	
 </section>
 
@@ -187,7 +241,7 @@ it(<span class="string">"contains spec with an expectation"</span>, <span class=
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript测试框架Jasmine（一）：简介"><span class="toc-number">1.</span> <span class="toc-text">Javascript测试框架Jasmine（一）：简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载运行"><span class="toc-number">1.1.</span> <span class="toc-text">下载运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Suites"><span class="toc-number">1.2.</span> <span class="toc-text">Suites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Specs"><span class="toc-number">1.3.</span> <span class="toc-text">Specs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Expectations"><span class="toc-number">1.4.</span> <span class="toc-text">Expectations</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matcher构造函数"><span class="toc-number">1.</span> <span class="toc-text">Matcher构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#compare函数"><span class="toc-number">2.</span> <span class="toc-text">compare函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Result"><span class="toc-number">2.1.</span> <span class="toc-text">Result</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误信息"><span class="toc-number">2.2.</span> <span class="toc-text">错误信息</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
